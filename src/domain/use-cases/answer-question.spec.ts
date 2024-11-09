@@ -1,12 +1,10 @@
-import { AnswerQuestionUseCase } from './answer-question.use-case';
-import { AnswersRepository } from '../repositories/answers-repository';
 import { Answer } from '../entities/answer';
+import { AnswersRepository } from '../repositories/answers-repository';
+import { AnswerQuestionUseCase } from './answer-question.use-case';
 
 const fakeAnswersRepository: AnswersRepository = {
-  create: async (answer: Answer) => {
-    return;
-  }
-}
+  create: async (_: Answer) => {},
+};
 
 test('create an answer', async () => {
   const answerQuestion = new AnswerQuestionUseCase(fakeAnswersRepository);
@@ -14,7 +12,7 @@ test('create an answer', async () => {
   const answer = await answerQuestion.execute({
     instructorId: 'instructor-id',
     questionId: 'question-id',
-    content: 'Nova resposta'
+    content: 'Nova resposta',
   });
 
   expect(answer.content).toEqual('Nova resposta');

@@ -1,0 +1,34 @@
+{
+  "extends": [
+    "@rocketseat/eslint-config/node",
+    "plugin:vitest-globals/recommended"
+  ],
+  "plugins": [
+    "simple-import-sort"
+  ],
+  "env": {
+    "vitest-globals/env": true
+  },
+  "rules": {
+    "no-useless-constructor": "off",
+    "prettier/prettier": ["error", {
+      "printWidth": 80,
+      "tabWidth": 2,
+      "singleQuote": true,
+      "trailingComma": "all",
+      "arrowParens": "always",
+      "semi": true,
+      "endOfLine": "auto"
+    }],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "simple-import-sort/imports": "error"
+  }
+}
