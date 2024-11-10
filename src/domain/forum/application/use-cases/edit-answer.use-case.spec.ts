@@ -3,6 +3,7 @@ import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answers-r
 
 import { UniqueEntityID } from '@/core/entities/unique-entity-id';
 
+import { NotAllowedError } from '../errors/not-allowed-error';
 import { EditAnswerUseCase } from './edit-answer.use-case';
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository;
@@ -45,12 +46,13 @@ describe('Edit Answer', () => {
 
     inMemoryAnswersRepository.create(newAnswer);
 
-    await expect(
-      sut.execute({
-        answerId: 'answer-1',
-        authorId: 'author-2',
-        content: 'New Content',
-      }),
-    ).rejects.toBeInstanceOf(Error);
+    const result = await sut.execute({
+      answerId: 'answer-1',
+      authorId: 'author-2',
+      content: 'New Content',
+    });
+
+    expect(result.isLeft()).toBe(true);
+    expect(result.value).toBeInstanceOf(NotAllowedError);
   });
 });

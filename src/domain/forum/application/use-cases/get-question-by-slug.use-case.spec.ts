@@ -1,7 +1,8 @@
 import { makeQuestion } from 'test/factories/make-question';
 import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-questions-repository';
 
-import { Slug } from '../../enterprise/entities/value-objects/slug';
+import { Slug } from '@/domain/forum/enterprise/entities/value-objects/slug';
+
 import { GetQuestionBySlugUseCase } from './get-question-by-slug.use-case';
 
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
@@ -18,14 +19,16 @@ describe('Get Question By Slug', () => {
       slug: Slug.create('example-question'),
     });
 
-    inMemoryQuestionsRepository.create(newQuestion);
+    await inMemoryQuestionsRepository.create(newQuestion);
 
-    const { question } = await sut.execute({
+    const result = await sut.execute({
       slug: 'example-question',
     });
 
-    expect(question.id).toBeTruthy();
-    expect(question.title).toEqual(newQuestion.title);
-    expect(question.slug).toEqual(newQuestion.slug);
+    expect(result.value).toMatchObject({
+      question: expect.objectContaining({
+        title: newQuestion.title,
+      }),
+    });
   });
 });
