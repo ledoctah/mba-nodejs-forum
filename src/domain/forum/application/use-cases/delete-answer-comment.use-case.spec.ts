@@ -2,8 +2,8 @@ import { makeAnswerComment } from 'test/factories/make-answer-comment';
 import { InMemoryAnswerCommentsRepository } from 'test/repositories/in-memory-answer-comments-repository';
 
 import { UniqueEntityID } from '@/core/entities/unique-entity-id';
+import { NotAllowedError } from '@/core/errors/not-allowed-error';
 
-import { NotAllowedError } from '../errors/not-allowed-error';
 import { DeleteAnswerCommentUseCase } from './delete-answer-comment.use-case';
 
 let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentsRepository;
