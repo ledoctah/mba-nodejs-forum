@@ -42,7 +42,7 @@ describe('Edit Question', () => {
       }),
       makeQuestionAttachment({
         questionId: newQuestion.id,
-        attachmentId: new UniqueEntityID('12'),
+        attachmentId: new UniqueEntityID('2'),
       }),
     );
 
