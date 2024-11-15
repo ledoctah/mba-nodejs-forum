@@ -13,7 +13,8 @@ export abstract class Entity<Props> {
     this.props = props;
   }
 
-  public equals(entity: Entity<unknown>) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public equals(entity: Entity<any>) {
     if (entity === this) {
       return true;
     }

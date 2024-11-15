@@ -20,6 +20,7 @@
       "semi": true,
       "endOfLine": "auto"
     }],
+    "no-new": "off",
     "no-unused-vars": "off",
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/no-unused-vars": [
